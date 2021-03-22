@@ -1,18 +1,10 @@
 defmodule Exflight do
-  @moduledoc """
-  Documentation for `Exflight`.
-  """
+  alias Exflight.Users.Agent, as: UserAgent
+  alias Exflight.Users.CreateOrUpdate
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Exflight.hello()
-      :world
-
-  """
-  def hello do
-    :world
+  def start_agents() do
+    UserAgent.start_link(nil)
   end
+
+  defdelegate create_user(params), to: CreateOrUpdate, as: :call
 end
